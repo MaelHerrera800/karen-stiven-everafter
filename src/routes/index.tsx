@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Heart, MapPin, Calendar, Gift, MessageCircle, Sparkles } from "lucide-react";
 import { Envelope } from "@/components/Envelope";
-import { Petals } from "@/components/Petals";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
 import { useReveal } from "@/hooks/use-reveal";
@@ -65,25 +64,25 @@ function Invitation() {
 
   return (
     <div className="relative animate-fade-in" style={{ background: "var(--background)" }}>
-      <Petals />
       <MusicToggle autoplay />
 
       {/* HERO */}
-      <header className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
-              style={{ background: "var(--gradient-romantic)" }}>
+      <header className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden bg-background">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div className="text-center max-w-2xl animate-fade-up relative z-10">
-          <p className="font-serif uppercase tracking-[0.5em] text-xs text-primary mb-6">Nos Casamos</p>
-          <h1 className="font-script text-7xl md:text-9xl text-gold-gradient leading-none">Karen</h1>
-          <div className="my-3 flex items-center justify-center gap-3 text-primary">
-            <span className="h-px w-20 bg-current opacity-40" />
-            <Heart className="h-4 w-4 fill-current" />
-            <span className="h-px w-20 bg-current opacity-40" />
+          <p className="font-serif uppercase tracking-[0.6em] text-[10px] text-primary/80 mb-8">— Nos Casamos —</p>
+          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Karen</h1>
+          <div className="my-5 flex items-center justify-center gap-4 text-primary/70">
+            <span className="h-px w-24 bg-current" />
+            <span className="font-serif italic text-base">&</span>
+            <span className="h-px w-24 bg-current" />
           </div>
-          <h1 className="font-script text-7xl md:text-9xl text-gold-gradient leading-none">Stiven</h1>
-          <p className="mt-10 font-serif italic text-lg md:text-xl text-foreground/70">
+          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Stiven</h1>
+          <p className="mt-12 font-serif italic text-lg md:text-xl text-foreground/60">
             “Y al fin, los dos serán uno solo”
           </p>
-          <p className="mt-8 font-serif tracking-[0.4em] uppercase text-xs text-muted-foreground">
+          <p className="mt-10 font-serif tracking-[0.5em] uppercase text-[11px] text-muted-foreground">
             {WEDDING.dateLabel}
           </p>
         </div>
