@@ -6,8 +6,6 @@ import { Petals } from "@/components/Petals";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
 import { useReveal } from "@/hooks/use-reveal";
-import floralHero from "@/assets/floral-hero.png";
-import floralCorner from "@/assets/floral-corner.png";
 import couple1 from "@/assets/couple-1.jpg";
 import couple2 from "@/assets/couple-2.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
