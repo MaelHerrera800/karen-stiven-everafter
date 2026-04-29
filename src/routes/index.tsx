@@ -6,8 +6,6 @@ import { Petals } from "@/components/Petals";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
 import { useReveal } from "@/hooks/use-reveal";
-import floralHero from "@/assets/floral-hero.png";
-import floralCorner from "@/assets/floral-corner.png";
 import couple1 from "@/assets/couple-1.jpg";
 import couple2 from "@/assets/couple-2.jpg";
 import gallery1 from "@/assets/gallery-1.jpg";
@@ -73,30 +71,22 @@ function Invitation() {
       {/* HERO */}
       <header className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
               style={{ background: "var(--gradient-romantic)" }}>
-        <img src={floralCorner} alt="" aria-hidden width={420} height={420}
-             className="absolute top-0 left-0 w-56 md:w-80 opacity-90 -translate-x-10 -translate-y-10 animate-float-slow" />
-        <img src={floralCorner} alt="" aria-hidden width={420} height={420}
-             className="absolute bottom-0 right-0 w-56 md:w-80 opacity-90 translate-x-10 translate-y-10 rotate-180 animate-float-slow" />
-
-        <div className="text-center max-w-2xl animate-fade-up">
-          <p className="font-serif uppercase tracking-[0.5em] text-sm text-primary mb-4">Nos Casamos</p>
+        <div className="text-center max-w-2xl animate-fade-up relative z-10">
+          <p className="font-serif uppercase tracking-[0.5em] text-xs text-primary mb-6">Nos Casamos</p>
           <h1 className="font-script text-7xl md:text-9xl text-gold-gradient leading-none">Karen</h1>
-          <div className="my-2 flex items-center justify-center gap-3 text-primary">
-            <span className="h-px w-16 bg-current opacity-50" />
-            <Heart className="h-5 w-5 fill-current" />
-            <span className="h-px w-16 bg-current opacity-50" />
+          <div className="my-3 flex items-center justify-center gap-3 text-primary">
+            <span className="h-px w-20 bg-current opacity-40" />
+            <Heart className="h-4 w-4 fill-current" />
+            <span className="h-px w-20 bg-current opacity-40" />
           </div>
           <h1 className="font-script text-7xl md:text-9xl text-gold-gradient leading-none">Stiven</h1>
-          <p className="mt-8 font-serif italic text-lg md:text-xl text-foreground/80">
+          <p className="mt-10 font-serif italic text-lg md:text-xl text-foreground/70">
             “Y al fin, los dos serán uno solo”
           </p>
-          <p className="mt-6 font-serif tracking-[0.3em] uppercase text-sm text-muted-foreground">
+          <p className="mt-8 font-serif tracking-[0.4em] uppercase text-xs text-muted-foreground">
             {WEDDING.dateLabel}
           </p>
         </div>
-
-        <img src={floralHero} alt="" aria-hidden width={1280} height={1280}
-             className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[60rem] max-w-none opacity-25 pointer-events-none" />
       </header>
 
       {/* COUNTDOWN */}
@@ -143,12 +133,12 @@ function Invitation() {
       {/* GALLERY */}
       <Section className="bg-secondary/30" id="galeria">
         <SectionTitle kicker="Galería" title="Momentos que atesoramos" />
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {[couple2, gallery1, gallery2, gallery3, couple1, couple2].map((src, i) => (
-            <div key={i} className="overflow-hidden rounded-2xl group reveal"
-                 style={{ aspectRatio: i % 5 === 0 ? "3/4" : "1/1" }}>
+            <div key={i} className="overflow-hidden rounded-sm group reveal bg-card p-2 border border-primary/30"
+                 style={{ aspectRatio: i % 5 === 0 ? "3/4" : "1/1", boxShadow: "var(--shadow-soft)" }}>
               <img src={src} alt={`Galería ${i + 1}`} width={1024} height={1024} loading="lazy"
-                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
           ))}
         </div>
@@ -191,34 +181,25 @@ function Invitation() {
         </div>
       </Section>
 
-      {/* GIFTS */}
+      {/* GIFTS — Lluvia de sobres */}
       <Section>
-        <SectionTitle kicker="Lista de regalos" title="Mesa de regalos" />
-        <div className="grid sm:grid-cols-3 gap-5">
-          {[
-            { name: "Lluvia de sobres", desc: "Tu apoyo para nuestra luna de miel", icon: <Gift className="h-6 w-6" /> },
-            { name: "Amazon", desc: "Código: K&S-2026", icon: <Gift className="h-6 w-6" /> },
-            { name: "Falabella", desc: "Lista #123456", icon: <Gift className="h-6 w-6" /> },
-          ].map((g) => (
-            <div key={g.name}
-                 className="rounded-2xl p-6 bg-card border border-border text-center transition-transform hover:-translate-y-1"
-                 style={{ boxShadow: "var(--shadow-soft)" }}>
-              <div className="mx-auto h-12 w-12 rounded-full flex items-center justify-center text-primary-foreground mb-4"
-                   style={{ background: "var(--gradient-gold)" }}>{g.icon}</div>
-              <h3 className="font-script text-3xl text-gold-gradient">{g.name}</h3>
-              <p className="font-serif text-sm text-muted-foreground mt-2">{g.desc}</p>
-            </div>
-          ))}
+        <SectionTitle kicker="Mesa de regalos" title="Lluvia de sobres" />
+        <div className="max-w-xl mx-auto text-center">
+          <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
+               style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
+            <Gift className="h-7 w-7" />
+          </div>
+          <p className="font-serif text-lg italic text-foreground/80 leading-relaxed">
+            Tu compañía es nuestro mayor regalo. Si deseas obsequiarnos algo,
+            agradecemos tu detalle en una <span className="text-primary">lluvia de sobres</span> el día del evento.
+          </p>
+          <div className="divider mt-8 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
         </div>
       </Section>
 
       {/* FOOTER */}
-      <footer className="relative py-16 px-6 text-center overflow-hidden"
+      <footer className="relative py-20 px-6 text-center overflow-hidden"
               style={{ background: "var(--gradient-romantic)" }}>
-        <img src={floralCorner} alt="" aria-hidden width={500} height={500}
-             className="absolute -bottom-10 -left-10 w-64 opacity-60" />
-        <img src={floralCorner} alt="" aria-hidden width={500} height={500}
-             className="absolute -bottom-10 -right-10 w-64 opacity-60 rotate-180" />
         <p className="font-serif uppercase tracking-[0.4em] text-xs text-muted-foreground">Con amor</p>
         <h2 className="font-script text-6xl md:text-7xl text-gold-gradient mt-3">Karen &amp; Stiven</h2>
         <p className="mt-4 font-serif italic text-foreground/70">{WEDDING.dateLabel}</p>

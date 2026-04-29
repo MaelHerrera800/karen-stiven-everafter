@@ -45,40 +45,40 @@
 :root {
   --radius: 0.625rem;
 
-  /* Romantic palette */
-  --background: oklch(0.985 0.012 80);          /* warm cream */
-  --foreground: oklch(0.32 0.04 40);            /* deep mocha */
-  --card: oklch(0.98 0.014 75);
-  --card-foreground: oklch(0.32 0.04 40);
-  --popover: oklch(0.98 0.014 75);
-  --popover-foreground: oklch(0.32 0.04 40);
+  /* Olive · minimalist palette */
+  --background: oklch(0.985 0.008 100);          /* off-white ivory */
+  --foreground: oklch(0.28 0.03 130);            /* deep olive ink */
+  --card: oklch(0.975 0.012 110);
+  --card-foreground: oklch(0.28 0.03 130);
+  --popover: oklch(0.975 0.012 110);
+  --popover-foreground: oklch(0.28 0.03 130);
 
-  --primary: oklch(0.66 0.10 60);               /* rich gold */
-  --primary-foreground: oklch(0.99 0.005 80);
-  --secondary: oklch(0.93 0.025 30);            /* soft blush */
-  --secondary-foreground: oklch(0.35 0.05 30);
-  --muted: oklch(0.95 0.015 70);
-  --muted-foreground: oklch(0.50 0.04 40);
-  --accent: oklch(0.88 0.04 25);                /* dusty rose */
-  --accent-foreground: oklch(0.32 0.04 40);
+  --primary: oklch(0.48 0.07 125);               /* olive verde */
+  --primary-foreground: oklch(0.98 0.008 100);
+  --secondary: oklch(0.94 0.018 115);            /* soft sage */
+  --secondary-foreground: oklch(0.30 0.04 130);
+  --muted: oklch(0.95 0.012 110);
+  --muted-foreground: oklch(0.48 0.03 125);
+  --accent: oklch(0.78 0.05 125);                /* light olive */
+  --accent-foreground: oklch(0.28 0.03 130);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.88 0.025 60);
-  --input: oklch(0.92 0.02 60);
-  --ring: oklch(0.66 0.10 60);
+  --border: oklch(0.86 0.02 120);
+  --input: oklch(0.92 0.015 115);
+  --ring: oklch(0.48 0.07 125);
 
-  --gold: oklch(0.72 0.12 75);
-  --gold-soft: oklch(0.85 0.08 80);
-  --blush: oklch(0.92 0.04 25);
-  --rose: oklch(0.80 0.08 20);
-  --cream: oklch(0.97 0.015 80);
+  --gold: oklch(0.55 0.08 125);                  /* olive (kept name for compat) */
+  --gold-soft: oklch(0.80 0.05 120);
+  --blush: oklch(0.93 0.02 115);
+  --rose: oklch(0.70 0.05 125);
+  --cream: oklch(0.97 0.01 100);
 
   /* Gradients & shadows */
-  --gradient-romantic: linear-gradient(135deg, oklch(0.97 0.015 80) 0%, oklch(0.93 0.04 25) 60%, oklch(0.85 0.08 80) 100%);
-  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.10 80), oklch(0.66 0.12 65));
-  --gradient-envelope: linear-gradient(145deg, oklch(0.97 0.012 80), oklch(0.92 0.03 60));
-  --gradient-flap: linear-gradient(180deg, oklch(0.94 0.025 65), oklch(0.86 0.05 55));
+  --gradient-romantic: linear-gradient(135deg, oklch(0.98 0.008 100) 0%, oklch(0.94 0.02 120) 60%, oklch(0.86 0.05 125) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.58 0.08 125), oklch(0.42 0.07 130));
+  --gradient-envelope: linear-gradient(145deg, oklch(0.97 0.01 100), oklch(0.90 0.03 120));
+  --gradient-flap: linear-gradient(180deg, oklch(0.88 0.04 125), oklch(0.72 0.06 130));
 
   --shadow-soft: 0 20px 60px -20px color-mix(in oklab, oklch(0.5 0.1 30) 25%, transparent);
   --shadow-gold: 0 10px 40px -10px color-mix(in oklab, var(--gold) 45%, transparent);
@@ -209,13 +209,13 @@
   position: absolute; top: 42%; left: 50%;
   width: 78px; height: 78px;
   transform: translate(-50%, -50%);
-  background: radial-gradient(circle at 35% 35%, oklch(0.78 0.14 25), oklch(0.45 0.18 20));
+  background: radial-gradient(circle at 35% 35%, oklch(0.58 0.08 125), oklch(0.36 0.07 130));
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   color: var(--cream);
   font-family: var(--font-script);
   font-size: 1.6rem;
-  box-shadow: 0 8px 24px -6px color-mix(in oklab, oklch(0.4 0.18 20) 60%, transparent), inset 0 0 0 2px color-mix(in oklab, var(--gold-soft) 70%, transparent);
+  box-shadow: 0 8px 24px -6px color-mix(in oklab, oklch(0.30 0.07 130) 60%, transparent), inset 0 0 0 2px color-mix(in oklab, var(--gold-soft) 70%, transparent);
   z-index: 4;
   transition: transform 0.6s var(--transition-silky), opacity 0.5s ease;
 }
@@ -253,10 +253,10 @@
 .petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
 .petal {
   position: absolute; top: 0;
-  width: 18px; height: 18px;
-  background: radial-gradient(circle at 30% 30%, oklch(0.92 0.06 20), oklch(0.78 0.10 15));
+  width: 16px; height: 16px;
+  background: radial-gradient(circle at 30% 30%, oklch(0.78 0.06 125), oklch(0.50 0.08 130));
   border-radius: 150% 0 150% 0;
-  opacity: 0.85;
+  opacity: 0.75;
   animation: petal-fall linear infinite;
 }
 
