@@ -249,23 +249,12 @@
   white-space: nowrap;
 }
 
-/* ===== Petals ===== */
-.petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
-.petal {
-  position: absolute; top: 0;
-  width: 16px; height: 16px;
-  background: radial-gradient(circle at 30% 30%, oklch(0.78 0.06 125), oklch(0.50 0.08 130));
-  border-radius: 150% 0 150% 0;
-  opacity: 0.75;
-  animation: petal-fall linear infinite;
-}
-
 /* ===== Decorative divider ===== */
 .divider {
-  display: flex; align-items: center; justify-content: center; gap: 1rem;
-  color: var(--gold);
+  display: flex; align-items: center; justify-content: center; gap: 0.85rem;
+  color: color-mix(in oklab, var(--primary) 60%, transparent);
 }
 .divider::before, .divider::after {
-  content: ""; height: 1px; flex: 1; max-width: 120px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  content: ""; height: 1px; flex: 1; max-width: 96px;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 45%, transparent), transparent);
 }
