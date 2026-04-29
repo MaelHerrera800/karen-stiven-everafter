@@ -2,7 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Heart, MapPin, Calendar, Gift, MessageCircle, Sparkles } from "lucide-react";
 import { Envelope } from "@/components/Envelope";
-import { Petals } from "@/components/Petals";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
 import { useReveal } from "@/hooks/use-reveal";
