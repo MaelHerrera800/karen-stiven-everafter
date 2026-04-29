@@ -73,30 +73,22 @@ function Invitation() {
       {/* HERO */}
       <header className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden"
               style={{ background: "var(--gradient-romantic)" }}>
-        <img src={floralCorner} alt="" aria-hidden width={420} height={420}
-             className="absolute top-0 left-0 w-56 md:w-80 opacity-90 -translate-x-10 -translate-y-10 animate-float-slow" />
-        <img src={floralCorner} alt="" aria-hidden width={420} height={420}
-             className="absolute bottom-0 right-0 w-56 md:w-80 opacity-90 translate-x-10 translate-y-10 rotate-180 animate-float-slow" />
-
-        <div className="text-center max-w-2xl animate-fade-up">
-          <p className="font-serif uppercase tracking-[0.5em] text-sm text-primary mb-4">Nos Casamos</p>
+        <div className="text-center max-w-2xl animate-fade-up relative z-10">
+          <p className="font-serif uppercase tracking-[0.5em] text-xs text-primary mb-6">Nos Casamos</p>
           <h1 className="font-script text-7xl md:text-9xl text-gold-gradient leading-none">Karen</h1>
-          <div className="my-2 flex items-center justify-center gap-3 text-primary">
-            <span className="h-px w-16 bg-current opacity-50" />
-            <Heart className="h-5 w-5 fill-current" />
-            <span className="h-px w-16 bg-current opacity-50" />
+          <div className="my-3 flex items-center justify-center gap-3 text-primary">
+            <span className="h-px w-20 bg-current opacity-40" />
+            <Heart className="h-4 w-4 fill-current" />
+            <span className="h-px w-20 bg-current opacity-40" />
           </div>
           <h1 className="font-script text-7xl md:text-9xl text-gold-gradient leading-none">Stiven</h1>
-          <p className="mt-8 font-serif italic text-lg md:text-xl text-foreground/80">
+          <p className="mt-10 font-serif italic text-lg md:text-xl text-foreground/70">
             “Y al fin, los dos serán uno solo”
           </p>
-          <p className="mt-6 font-serif tracking-[0.3em] uppercase text-sm text-muted-foreground">
+          <p className="mt-8 font-serif tracking-[0.4em] uppercase text-xs text-muted-foreground">
             {WEDDING.dateLabel}
           </p>
         </div>
-
-        <img src={floralHero} alt="" aria-hidden width={1280} height={1280}
-             className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[60rem] max-w-none opacity-25 pointer-events-none" />
       </header>
 
       {/* COUNTDOWN */}
