@@ -183,34 +183,25 @@ function Invitation() {
         </div>
       </Section>
 
-      {/* GIFTS */}
+      {/* GIFTS — Lluvia de sobres */}
       <Section>
-        <SectionTitle kicker="Lista de regalos" title="Mesa de regalos" />
-        <div className="grid sm:grid-cols-3 gap-5">
-          {[
-            { name: "Lluvia de sobres", desc: "Tu apoyo para nuestra luna de miel", icon: <Gift className="h-6 w-6" /> },
-            { name: "Amazon", desc: "Código: K&S-2026", icon: <Gift className="h-6 w-6" /> },
-            { name: "Falabella", desc: "Lista #123456", icon: <Gift className="h-6 w-6" /> },
-          ].map((g) => (
-            <div key={g.name}
-                 className="rounded-2xl p-6 bg-card border border-border text-center transition-transform hover:-translate-y-1"
-                 style={{ boxShadow: "var(--shadow-soft)" }}>
-              <div className="mx-auto h-12 w-12 rounded-full flex items-center justify-center text-primary-foreground mb-4"
-                   style={{ background: "var(--gradient-gold)" }}>{g.icon}</div>
-              <h3 className="font-script text-3xl text-gold-gradient">{g.name}</h3>
-              <p className="font-serif text-sm text-muted-foreground mt-2">{g.desc}</p>
-            </div>
-          ))}
+        <SectionTitle kicker="Mesa de regalos" title="Lluvia de sobres" />
+        <div className="max-w-xl mx-auto text-center">
+          <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
+               style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
+            <Gift className="h-7 w-7" />
+          </div>
+          <p className="font-serif text-lg italic text-foreground/80 leading-relaxed">
+            Tu compañía es nuestro mayor regalo. Si deseas obsequiarnos algo,
+            agradecemos tu detalle en una <span className="text-primary">lluvia de sobres</span> el día del evento.
+          </p>
+          <div className="divider mt-8 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
         </div>
       </Section>
 
       {/* FOOTER */}
-      <footer className="relative py-16 px-6 text-center overflow-hidden"
+      <footer className="relative py-20 px-6 text-center overflow-hidden"
               style={{ background: "var(--gradient-romantic)" }}>
-        <img src={floralCorner} alt="" aria-hidden width={500} height={500}
-             className="absolute -bottom-10 -left-10 w-64 opacity-60" />
-        <img src={floralCorner} alt="" aria-hidden width={500} height={500}
-             className="absolute -bottom-10 -right-10 w-64 opacity-60 rotate-180" />
         <p className="font-serif uppercase tracking-[0.4em] text-xs text-muted-foreground">Con amor</p>
         <h2 className="font-script text-6xl md:text-7xl text-gold-gradient mt-3">Karen &amp; Stiven</h2>
         <p className="mt-4 font-serif italic text-foreground/70">{WEDDING.dateLabel}</p>
