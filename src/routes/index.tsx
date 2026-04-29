@@ -135,12 +135,12 @@ function Invitation() {
       {/* GALLERY */}
       <Section className="bg-secondary/30" id="galeria">
         <SectionTitle kicker="Galería" title="Momentos que atesoramos" />
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {[couple2, gallery1, gallery2, gallery3, couple1, couple2].map((src, i) => (
-            <div key={i} className="overflow-hidden rounded-2xl group reveal"
-                 style={{ aspectRatio: i % 5 === 0 ? "3/4" : "1/1" }}>
+            <div key={i} className="overflow-hidden rounded-sm group reveal bg-card p-2 border border-primary/30"
+                 style={{ aspectRatio: i % 5 === 0 ? "3/4" : "1/1", boxShadow: "var(--shadow-soft)" }}>
               <img src={src} alt={`Galería ${i + 1}`} width={1024} height={1024} loading="lazy"
-                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             </div>
           ))}
         </div>
