@@ -64,7 +64,6 @@ function Invitation() {
 
   return (
     <div className="relative animate-fade-in" style={{ background: "var(--background)" }}>
-      <Petals />
       <MusicToggle autoplay />
 
       {/* HERO */}
