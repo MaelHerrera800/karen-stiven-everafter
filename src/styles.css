@@ -253,10 +253,10 @@
 .petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 5; }
 .petal {
   position: absolute; top: 0;
-  width: 18px; height: 18px;
-  background: radial-gradient(circle at 30% 30%, oklch(0.92 0.06 20), oklch(0.78 0.10 15));
+  width: 16px; height: 16px;
+  background: radial-gradient(circle at 30% 30%, oklch(0.78 0.06 125), oklch(0.50 0.08 130));
   border-radius: 150% 0 150% 0;
-  opacity: 0.85;
+  opacity: 0.75;
   animation: petal-fall linear infinite;
 }
 
