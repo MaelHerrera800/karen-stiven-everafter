@@ -18,9 +18,9 @@ const gallery = [p1.url, p3.url, p4.url, p5.url, p6.url, p7.url];
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Karen & Stiven · Nos Casamos" },
-      { name: "description", content: "Invitación digital a la boda de Karen y Stiven. Acompáñanos a celebrar nuestro amor." },
-      { property: "og:title", content: "Karen & Stiven · Nos Casamos" },
+      { title: "Stiven & Gisell · Nos Casamos" },
+      { name: "description", content: "Invitación digital a la boda de Stiven y Gisell. Acompáñanos a celebrar nuestro amor." },
+      { property: "og:title", content: "Stiven & Gisell · Nos Casamos" },
       { property: "og:description", content: "Una invitación elegante para celebrar nuestro amor." },
     ],
   }),
@@ -64,7 +64,7 @@ function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
 function Invitation() {
   useReveal();
   const rsvpUrl = `https://wa.me/${WEDDING.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
-    "¡Hola! Confirmo mi asistencia a la boda de Karen & Stiven 💍",
+    "¡Hola! Confirmo mi asistencia a la boda de Stiven & Gisell 💍",
   )}`;
 
   return (
@@ -77,13 +77,13 @@ function Invitation() {
         <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div className="text-center max-w-2xl animate-fade-up relative z-10">
           <p className="font-serif uppercase tracking-[0.6em] text-[10px] text-primary/80 mb-8">— Nos Casamos —</p>
-          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Karen</h1>
+          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Stiven</h1>
           <div className="my-5 flex items-center justify-center gap-4 text-primary/70">
             <span className="h-px w-24 bg-current" />
             <span className="font-serif italic text-base">&</span>
             <span className="h-px w-24 bg-current" />
           </div>
-          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Stiven</h1>
+          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Gisell</h1>
           <p className="mt-12 font-serif italic text-lg md:text-xl text-foreground/60">
             “Y al fin, los dos serán uno solo”
           </p>
@@ -116,18 +116,18 @@ function Invitation() {
       <Section>
         <SectionTitle kicker="Nuestra historia" title="Así nos enamoramos" />
         <div className="grid md:grid-cols-2 gap-10 items-center">
-          <img src={couple1} alt="Karen y Stiven" width={1024} height={1280} loading="lazy"
+          <img src={couple1} alt="Stiven y Gisell" width={1024} height={1280} loading="lazy"
                className="rounded-2xl object-cover w-full h-[28rem] shadow-[var(--shadow-soft)]" />
           <div className="space-y-6 font-serif text-lg leading-relaxed text-foreground/80">
-            <p className="first-letter:font-script first-letter:text-6xl first-letter:text-primary first-letter:mr-2 first-letter:float-left first-letter:leading-none">
-              Nos conocimos un día cualquiera que terminó siendo extraordinario. Entre risas, café y
-              conversaciones interminables, descubrimos que el destino tenía planes maravillosos para
-              los dos.
+            <p className="font-script text-3xl text-gold-gradient leading-normal">
+              "El amor Todo lo sufre, todo lo cree, todo lo espera, todo lo soporta..."
+            </p>
+            <p className="font-serif italic text-foreground/70">1 Corintios 13:7</p>
+            <p>
+              Entre el afán de los días y el ruido del mundo, Dios permitió que nuestros caminos se cruzaran sin previo aviso. Lo que comenzó como un encuentro inesperado se convirtió en nuestra mayor certeza: esperar vale la pena cuando es Su mano la que guía el destino.
             </p>
             <p>
-              Cada paso del camino nos enseñó que el amor verdadero se construye día a día — con
-              ternura, paciencia y la certeza de querer compartirlo todo. Hoy, queremos celebrarlo
-              contigo.
+              Unimos nuestras vidas con la alegría de saber que nada fue coincidencia. Hoy nos presentamos ante ustedes como una muestra de que Dios es fiel, transformando nuestra espera en una hermosa realidad que apenas comienza.
             </p>
             <p className="font-script text-3xl text-gold-gradient">Por siempre, juntos.</p>
           </div>
@@ -233,7 +233,7 @@ function Invitation() {
       <footer className="relative py-20 px-6 text-center overflow-hidden"
               style={{ background: "var(--gradient-romantic)" }}>
         <p className="font-serif uppercase tracking-[0.4em] text-xs text-muted-foreground">Con amor</p>
-        <h2 className="font-script text-6xl md:text-7xl text-gold-gradient mt-3">Karen &amp; Stiven</h2>
+        <h2 className="font-script text-6xl md:text-7xl text-gold-gradient mt-3">Stiven &amp; Gisell</h2>
         <p className="mt-4 font-serif italic text-foreground/70">{WEDDING.dateLabel}</p>
       </footer>
     </div>
