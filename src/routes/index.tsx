@@ -177,7 +177,7 @@ function Invitation() {
           />
         </div>
         <div className="mt-6 text-center">
-          <a href={WEDDING.mapsShortUrl}
+          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(WEDDING.mapsQuery)}`}
              target="_blank" rel="noreferrer"
              className="inline-flex items-center gap-2 text-primary font-serif underline-offset-4 hover:underline">
             <MapPin className="h-4 w-4" /> Abrir en Google Maps
