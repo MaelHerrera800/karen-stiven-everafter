@@ -184,6 +184,34 @@ function Invitation() {
         </div>
       </Section>
 
+      {/* DRESS CODE */}
+      <Section>
+        <SectionTitle kicker="Código de vestimenta" title="Dress Code" />
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
+               style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
+            <Shirt className="h-7 w-7" />
+          </div>
+          <p className="font-serif text-lg italic text-foreground/80 leading-relaxed">
+            Para acompañar la elegancia de nuestro día, te pedimos vestir
+            <span className="text-primary"> formal y elegante</span>.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
+            <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellas</p>
+              <h3 className="font-script text-3xl text-gold-gradient mt-2">Vestido largo</h3>
+              <p className="font-serif text-foreground/75 mt-2">Tonos sobrios y elegantes. Se reserva el color blanco para la novia.</p>
+            </div>
+            <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellos</p>
+              <h3 className="font-script text-3xl text-gold-gradient mt-2">Traje formal</h3>
+              <p className="font-serif text-foreground/75 mt-2">Traje completo con corbata. Tonos neutros u oscuros.</p>
+            </div>
+          </div>
+          <div className="divider mt-10 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
+        </div>
+      </Section>
+
       {/* GIFTS — Lluvia de sobres */}
       <Section>
         <SectionTitle kicker="Mesa de regalos" title="Lluvia de sobres" />
