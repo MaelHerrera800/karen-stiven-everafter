@@ -36,7 +36,8 @@ const WEDDING = {
   ceremonyAddress: "Calle 10 #12-34, tu ciudad",
   reception: "Hacienda Los Jardines",
   receptionAddress: "Vía al lago, km 7",
-  mapsQuery: "Hacienda+Los+Jardines",
+  mapsQuery: "https://maps.app.goo.gl/sfDRXrtd2ybD2zbV8",
+  mapsShortUrl: "https://maps.app.goo.gl/sfDRXrtd2ybD2zbV8?g_st=ic",
   whatsapp: "+573000000000",
 };
 
