@@ -29,8 +29,8 @@ export const Route = createFileRoute("/")({
 
 // Editable wedding details
 const WEDDING = {
-  date: new Date("2026-12-12T17:00:00"),
-  dateLabel: "Sábado 12 de Diciembre, 2026",
+  date: new Date("2026-08-22T17:00:00"),
+  dateLabel: "Sábado 22 de Agosto, 2026",
   timeLabel: "5:00 p.m.",
   ceremony: "Iglesia San Francisco de Asís",
   ceremonyAddress: "Santander de Quilichao, Cauca",
