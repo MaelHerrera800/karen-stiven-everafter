@@ -1,15 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Heart, MapPin, Calendar, Gift, MessageCircle, Sparkles } from "lucide-react";
+import { MapPin, Calendar, Gift, MessageCircle, Sparkles, Shirt } from "lucide-react";
 import { Envelope } from "@/components/Envelope";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
 import { useReveal } from "@/hooks/use-reveal";
-import couple1 from "@/assets/couple-1.jpg";
-import couple2 from "@/assets/couple-2.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
+import p1 from "@/assets/photos/p1.jpg.asset.json";
+import p2 from "@/assets/photos/p2.jpg.asset.json";
+import p3 from "@/assets/photos/p3.jpg.asset.json";
+import p4 from "@/assets/photos/p4.jpg.asset.json";
+import p5 from "@/assets/photos/p5.jpg.asset.json";
+import p6 from "@/assets/photos/p6.jpg.asset.json";
+import p7 from "@/assets/photos/p7.jpg.asset.json";
+const couple1 = p2.url;
+const gallery = [p1.url, p3.url, p4.url, p5.url, p6.url, p7.url];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -133,7 +137,7 @@ function Invitation() {
       <Section className="bg-secondary/30" id="galeria">
         <SectionTitle kicker="Galería" title="Momentos que atesoramos" />
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-          {[couple2, gallery1, gallery2, gallery3, couple1, couple2].map((src, i) => (
+          {gallery.map((src, i) => (
             <div key={i} className="overflow-hidden rounded-sm group reveal bg-card p-2 border border-primary/30"
                  style={{ aspectRatio: i % 5 === 0 ? "3/4" : "1/1", boxShadow: "var(--shadow-soft)" }}>
               <img src={src} alt={`Galería ${i + 1}`} width={1024} height={1024} loading="lazy"
@@ -177,6 +181,34 @@ function Invitation() {
              className="inline-flex items-center gap-2 text-primary font-serif underline-offset-4 hover:underline">
             <MapPin className="h-4 w-4" /> Abrir en Google Maps
           </a>
+        </div>
+      </Section>
+
+      {/* DRESS CODE */}
+      <Section>
+        <SectionTitle kicker="Código de vestimenta" title="Dress Code" />
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
+               style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
+            <Shirt className="h-7 w-7" />
+          </div>
+          <p className="font-serif text-lg italic text-foreground/80 leading-relaxed">
+            Para acompañar la elegancia de nuestro día, te pedimos vestir
+            <span className="text-primary"> formal y elegante</span>.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
+            <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellas</p>
+              <h3 className="font-script text-3xl text-gold-gradient mt-2">Vestido largo</h3>
+              <p className="font-serif text-foreground/75 mt-2">Tonos sobrios y elegantes. Se reserva el color blanco para la novia.</p>
+            </div>
+            <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellos</p>
+              <h3 className="font-script text-3xl text-gold-gradient mt-2">Traje formal</h3>
+              <p className="font-serif text-foreground/75 mt-2">Traje completo con corbata. Tonos neutros u oscuros.</p>
+            </div>
+          </div>
+          <div className="divider mt-10 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
         </div>
       </Section>
 
