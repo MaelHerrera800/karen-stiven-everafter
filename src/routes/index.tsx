@@ -36,7 +36,8 @@ const WEDDING = {
   ceremonyAddress: "Calle 10 #12-34, tu ciudad",
   reception: "Hacienda Los Jardines",
   receptionAddress: "Vía al lago, km 7",
-  mapsQuery: "Hacienda+Los+Jardines",
+  mapsQuery: "https://maps.app.goo.gl/sfDRXrtd2ybD2zbV8",
+  mapsShortUrl: "https://maps.app.goo.gl/sfDRXrtd2ybD2zbV8?g_st=ic",
   whatsapp: "+573000000000",
 };
 
@@ -169,14 +170,14 @@ function Invitation() {
         <div className="rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] border border-border">
           <iframe
             title="Mapa de la ubicación"
-            src={`https://www.google.com/maps?q=${WEDDING.mapsQuery}&output=embed`}
+            src={`https://www.google.com/maps?q=${encodeURIComponent(WEDDING.mapsQuery)}&output=embed`}
             className="w-full h-80 md:h-96"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
         <div className="mt-6 text-center">
-          <a href={`https://www.google.com/maps/search/?api=1&query=${WEDDING.mapsQuery}`}
+          <a href={WEDDING.mapsShortUrl}
              target="_blank" rel="noreferrer"
              className="inline-flex items-center gap-2 text-primary font-serif underline-offset-4 hover:underline">
             <MapPin className="h-4 w-4" /> Abrir en Google Maps
