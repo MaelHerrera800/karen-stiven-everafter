@@ -1,15 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Heart, MapPin, Calendar, Gift, MessageCircle, Sparkles } from "lucide-react";
+import { MapPin, Calendar, Gift, MessageCircle, Sparkles, Shirt } from "lucide-react";
 import { Envelope } from "@/components/Envelope";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
 import { useReveal } from "@/hooks/use-reveal";
-import couple1 from "@/assets/couple-1.jpg";
-import couple2 from "@/assets/couple-2.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
+import p1 from "@/assets/photos/p1.jpg.asset.json";
+import p2 from "@/assets/photos/p2.jpg.asset.json";
+import p3 from "@/assets/photos/p3.jpg.asset.json";
+import p4 from "@/assets/photos/p4.jpg.asset.json";
+import p5 from "@/assets/photos/p5.jpg.asset.json";
+import p6 from "@/assets/photos/p6.jpg.asset.json";
+import p7 from "@/assets/photos/p7.jpg.asset.json";
+const couple1 = p2.url;
+const gallery = [p1.url, p3.url, p4.url, p5.url, p6.url, p7.url];
 
 export const Route = createFileRoute("/")({
   head: () => ({
