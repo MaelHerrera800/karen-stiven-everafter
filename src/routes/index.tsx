@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MapPin, Calendar, Gift, MessageCircle, Sparkles, Shirt } from "lucide-react";
+import { MapPin, Calendar, MessageCircle, Sparkles, Shirt } from "lucide-react";
 import { Envelope } from "@/components/Envelope";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
