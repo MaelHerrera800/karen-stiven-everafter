@@ -83,7 +83,7 @@ function Invitation() {
             <span className="font-serif italic text-base">&</span>
             <span className="h-px w-24 bg-current" />
           </div>
-          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Gisell</h1>
+          <h1 className="font-script text-7xl md:text-[8.5rem] text-foreground leading-[0.95]">Gisel</h1>
           <p className="mt-12 font-serif italic text-lg md:text-xl text-foreground/60">
             “Y al fin, los dos serán uno solo”
           </p>
