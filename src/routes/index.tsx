@@ -18,9 +18,9 @@ const gallery = [p1.url, p3.url, p4.url, p5.url, p6.url, p7.url];
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Stiven & Gisell · Nos Casamos" },
-      { name: "description", content: "Invitación digital a la boda de Stiven y Gisell. Acompáñanos a celebrar nuestro amor." },
-      { property: "og:title", content: "Stiven & Gisell · Nos Casamos" },
+      { title: "Stiven & Gisel · Nos Casamos" },
+      { name: "description", content: "Invitación digital a la boda de Stiven y Gisel. Acompáñanos a celebrar nuestro amor." },
+      { property: "og:title", content: "Stiven & Gisel · Nos Casamos" },
       { property: "og:description", content: "Una invitación elegante para celebrar nuestro amor." },
     ],
   }),
@@ -32,7 +32,7 @@ const WEDDING = {
   date: new Date("2026-08-22T17:00:00"),
   dateLabel: "Sábado 22 de Agosto, 2026",
   timeLabel: "5:00 p.m.",
-  ceremony: "Iglesia San Francisco de Asís",
+  ceremony: "Casa del Río",
   ceremonyAddress: "Santander de Quilichao, Cauca",
   reception: "Casa del Río",
   receptionAddress: "Santander de Quilichao, Cauca",
