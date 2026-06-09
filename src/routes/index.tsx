@@ -155,11 +155,36 @@ function Invitation() {
       {/* RSVP */}
       <Section>
         <SectionTitle kicker="Confirma tu asistencia" title="Te esperamos" />
-        <div className="text-center max-w-xl mx-auto">
+        <div className="text-center max-w-2xl mx-auto">
           <p className="font-serif text-lg text-foreground/80 mb-8">
             Tu presencia es el mejor regalo. Por favor confirma tu asistencia antes del
-            <span className="text-primary font-semibold"> 1 de Diciembre</span>.
+            <span className="text-primary font-semibold"> 1 de Agosto</span>.
           </p>
+
+          <div className="grid sm:grid-cols-3 gap-4 mt-10 mb-10 text-left">
+            <div className="rounded-2xl p-5 bg-card border border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">Obligatorio</p>
+              <h4 className="font-script text-2xl text-gold-gradient mt-2">Confirmación</h4>
+              <p className="font-serif text-sm text-foreground/75 mt-2">
+                Es <span className="text-primary font-semibold">estrictamente obligatorio</span> confirmar tu asistencia antes de la fecha límite para garantizar tu lugar.
+              </p>
+            </div>
+            <div className="rounded-2xl p-5 bg-card border border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">Cupos limitados</p>
+              <h4 className="font-script text-2xl text-gold-gradient mt-2">Pase personal</h4>
+              <p className="font-serif text-sm text-foreground/75 mt-2">
+                Te pedimos respetar el número de invitados asignados en tu pase. No se permitirán acompañantes adicionales no registrados.
+              </p>
+            </div>
+            <div className="rounded-2xl p-5 bg-card border border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
+              <p className="text-xs uppercase tracking-[0.3em] text-primary">Control de acceso</p>
+              <h4 className="font-script text-2xl text-gold-gradient mt-2">Invitación digital</h4>
+              <p className="font-serif text-sm text-foreground/75 mt-2">
+                Deberás presentar tu invitación digital o código de acceso en la entrada del evento de manera obligatoria.
+              </p>
+            </div>
+          </div>
+
           <a href={rsvpUrl} target="_blank" rel="noreferrer"
              className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-primary-foreground font-serif uppercase tracking-[0.2em] text-sm transition-transform hover:scale-105"
              style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
@@ -167,6 +192,7 @@ function Invitation() {
           </a>
         </div>
       </Section>
+
 
       {/* MAP */}
       <Section className="bg-secondary/30">
