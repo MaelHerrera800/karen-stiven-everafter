@@ -38,7 +38,7 @@ const WEDDING = {
   receptionAddress: "Santander de Quilichao, Cauca",
   mapsQuery: "Casa del Río, Santander de Quilichao, Cauca",
   mapsShortUrl: "https://maps.app.goo.gl/sfDRXrtd2ybD2zbV8?g_st=ic",
-  whatsapp: "+573000000000",
+  whatsapp: "+573103709830",
 };
 
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
