@@ -13,8 +13,8 @@ declare global {
 export function MusicToggle({ autoplay }: { autoplay: boolean }) {
   const playerRef = useRef<any>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [playing, setPlaying] = useState(false);
-  const [ready, setReady] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const unmutedOnceRef = useRef(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -24,7 +24,7 @@ export function MusicToggle({ autoplay }: { autoplay: boolean }) {
       playerRef.current = new window.YT.Player(containerRef.current, {
         videoId: VIDEO_ID,
         playerVars: {
-          autoplay: autoplay ? 1 : 0,
+          autoplay: 1,
           controls: 0,
           loop: 1,
           playlist: VIDEO_ID,
@@ -34,16 +34,11 @@ export function MusicToggle({ autoplay }: { autoplay: boolean }) {
         },
         events: {
           onReady: (e: any) => {
-            setReady(true);
-            e.target.setVolume(40);
-            if (autoplay) {
+            try {
+              e.target.mute();
+              e.target.setVolume(50);
               e.target.playVideo();
-            }
-          },
-          onStateChange: (e: any) => {
-            // 1 = playing, 2 = paused, 0 = ended
-            if (e.data === 1) setPlaying(true);
-            else if (e.data === 2 || e.data === 0) setPlaying(false);
+            } catch {}
           },
         },
       });
@@ -66,20 +61,52 @@ export function MusicToggle({ autoplay }: { autoplay: boolean }) {
       };
     }
 
+    // Auto-unmute on first user interaction (browser policy workaround)
+    const tryUnmute = () => {
+      if (unmutedOnceRef.current) return;
+      const p = playerRef.current;
+      if (!p?.unMute) return;
+      try {
+        p.unMute();
+        p.setVolume(50);
+        p.playVideo();
+        unmutedOnceRef.current = true;
+        setMuted(false);
+        removeListeners();
+      } catch {}
+    };
+    const removeListeners = () => {
+      window.removeEventListener("pointerdown", tryUnmute);
+      window.removeEventListener("keydown", tryUnmute);
+      window.removeEventListener("scroll", tryUnmute);
+      window.removeEventListener("touchstart", tryUnmute);
+    };
+    window.addEventListener("pointerdown", tryUnmute, { once: false });
+    window.addEventListener("keydown", tryUnmute);
+    window.addEventListener("scroll", tryUnmute, { passive: true });
+    window.addEventListener("touchstart", tryUnmute, { passive: true });
+
     return () => {
       cancelled = true;
+      removeListeners();
     };
   }, [autoplay]);
 
   const toggle = () => {
     const p = playerRef.current;
-    if (!p || !ready) return;
-    const state = p.getPlayerState?.();
-    if (state === 1) {
-      p.pauseVideo();
-    } else {
-      p.playVideo();
-    }
+    if (!p) return;
+    try {
+      if (muted) {
+        p.unMute();
+        p.setVolume(50);
+        p.playVideo();
+        unmutedOnceRef.current = true;
+        setMuted(false);
+      } else {
+        p.mute();
+        setMuted(true);
+      }
+    } catch {}
   };
 
   return (
@@ -100,11 +127,11 @@ export function MusicToggle({ autoplay }: { autoplay: boolean }) {
       </div>
       <button
         onClick={toggle}
-        aria-label={playing ? "Pausar música" : "Reproducir música"}
+        aria-label={muted ? "Activar música" : "Silenciar música"}
         className="fixed bottom-6 right-6 z-50 h-12 w-12 rounded-full flex items-center justify-center text-primary-foreground transition-transform hover:scale-110"
         style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}
       >
-        {playing ? <Music2 className="h-5 w-5 animate-pulse" /> : <VolumeX className="h-5 w-5" />}
+        {muted ? <VolumeX className="h-5 w-5" /> : <Music2 className="h-5 w-5 animate-pulse" />}
       </button>
     </>
   );
