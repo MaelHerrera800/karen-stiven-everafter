@@ -64,7 +64,7 @@ function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
 function Invitation() {
   useReveal();
   const rsvpUrl = `https://wa.me/${WEDDING.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
-    "¡Hola! Confirmo mi asistencia a la boda de Stiven & Gisell 💍",
+    "¡Hola! Confirmo mi asistencia a la boda de Stiven & Gisel 💍",
   )}`;
 
   return (
