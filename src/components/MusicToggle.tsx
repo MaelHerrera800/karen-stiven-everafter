@@ -1,31 +1,103 @@
 import { useEffect, useRef, useState } from "react";
 import { Music2, VolumeX } from "lucide-react";
 
+const VIDEO_ID = "HUfUk-z00g8";
+
+declare global {
+  interface Window {
+    YT: any;
+    onYouTubeIframeAPIReady: (() => void) | undefined;
+  }
+}
+
 export function MusicToggle({ autoplay }: { autoplay: boolean }) {
-  const ref = useRef<HTMLAudioElement | null>(null);
+  const playerRef = useRef<any>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const [playing, setPlaying] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    if (autoplay && ref.current) {
-      ref.current.volume = 0.4;
-      ref.current.play().then(() => setPlaying(true)).catch(() => setPlaying(false));
+    let cancelled = false;
+
+    const init = () => {
+      if (cancelled || !containerRef.current || playerRef.current) return;
+      playerRef.current = new window.YT.Player(containerRef.current, {
+        videoId: VIDEO_ID,
+        playerVars: {
+          autoplay: autoplay ? 1 : 0,
+          controls: 0,
+          loop: 1,
+          playlist: VIDEO_ID,
+          modestbranding: 1,
+          playsinline: 1,
+          rel: 0,
+        },
+        events: {
+          onReady: (e: any) => {
+            setReady(true);
+            e.target.setVolume(40);
+            if (autoplay) {
+              e.target.playVideo();
+            }
+          },
+          onStateChange: (e: any) => {
+            // 1 = playing, 2 = paused, 0 = ended
+            if (e.data === 1) setPlaying(true);
+            else if (e.data === 2 || e.data === 0) setPlaying(false);
+          },
+        },
+      });
+    };
+
+    if (window.YT && window.YT.Player) {
+      init();
+    } else {
+      const existing = document.getElementById("yt-iframe-api");
+      if (!existing) {
+        const tag = document.createElement("script");
+        tag.id = "yt-iframe-api";
+        tag.src = "https://www.youtube.com/iframe_api";
+        document.body.appendChild(tag);
+      }
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => {
+        prev?.();
+        init();
+      };
     }
+
+    return () => {
+      cancelled = true;
+    };
   }, [autoplay]);
 
   const toggle = () => {
-    const a = ref.current;
-    if (!a) return;
-    if (a.paused) { a.play().then(() => setPlaying(true)).catch(() => {}); }
-    else { a.pause(); setPlaying(false); }
+    const p = playerRef.current;
+    if (!p || !ready) return;
+    const state = p.getPlayerState?.();
+    if (state === 1) {
+      p.pauseVideo();
+    } else {
+      p.playVideo();
+    }
   };
 
   return (
     <>
-      <audio
-        ref={ref}
-        loop
-        src="https://cdn.pixabay.com/download/audio/2022/10/18/audio_8f0c2a4c2e.mp3?filename=romantic-piano-15527.mp3"
-      />
+      <div
+        aria-hidden
+        style={{
+          position: "fixed",
+          width: 1,
+          height: 1,
+          opacity: 0,
+          pointerEvents: "none",
+          left: -9999,
+          top: -9999,
+        }}
+      >
+        <div ref={containerRef} />
+      </div>
       <button
         onClick={toggle}
         aria-label={playing ? "Pausar música" : "Reproducir música"}
