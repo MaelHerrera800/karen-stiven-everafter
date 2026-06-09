@@ -218,44 +218,65 @@ function Invitation() {
       {/* DRESS CODE */}
       <Section>
         <SectionTitle kicker="Código de vestimenta" title="Dress Code" />
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
                style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
             <Shirt className="h-7 w-7" />
           </div>
           <p className="font-serif text-lg italic text-foreground/80 leading-relaxed">
-            Para acompañar la elegancia de nuestro día, te pedimos vestir
-            <span className="text-primary"> formal y elegante</span>.
+            Te invitamos a vestir con tonos <span className="text-primary">suaves, empolvados o profundos</span>,
+            inspirados en la paleta romántica de nuestra celebración.
           </p>
-          <div className="grid sm:grid-cols-2 gap-6 mt-10 text-left">
+
+          <div className="mt-10">
+            <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-5">Paleta sugerida</p>
+            <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 max-w-2xl mx-auto">
+              {[
+                { name: "Palo de Rosa", hex: "#C9A0A0" },
+                { name: "Rosa Viejo", hex: "#B07A7A" },
+                { name: "Malva", hex: "#9E7B9B" },
+                { name: "Vino Tinto", hex: "#6E1F2A" },
+                { name: "Azul Oscuro", hex: "#1F2A44" },
+                { name: "Verde Olivo", hex: "#6B7A3A" },
+                { name: "Gris Piedra", hex: "#7D7B76" },
+                { name: "Gris Topo", hex: "#8B7E6E" },
+              ].map((c) => (
+                <div key={c.name} className="flex flex-col items-center gap-2">
+                  <div className="h-14 w-14 rounded-full border border-border shadow-[var(--shadow-soft)]"
+                       style={{ background: c.hex }} aria-label={c.name} />
+                  <span className="font-serif text-[11px] text-foreground/70 leading-tight text-center">{c.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-2 gap-6 mt-12 text-left">
             <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellas</p>
               <h3 className="font-script text-3xl text-gold-gradient mt-2">Vestido largo</h3>
-              <p className="font-serif text-foreground/75 mt-2">Tonos sobrios y elegantes. Se reserva el color blanco para la novia.</p>
+              <p className="font-serif text-foreground/75 mt-2">
+                Tonos de la paleta. Se reserva el color blanco exclusivamente para la novia.
+              </p>
             </div>
             <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellos</p>
               <h3 className="font-script text-3xl text-gold-gradient mt-2">Traje formal</h3>
-              <p className="font-serif text-foreground/75 mt-2">Traje completo con corbata. Tonos neutros u oscuros.</p>
+              <p className="font-serif text-foreground/75 mt-2">
+                Traje completo con corbata en tonos de la paleta (azul oscuro, vino tinto, olivo o grises).
+              </p>
             </div>
           </div>
-          <div className="divider mt-10 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
-        </div>
-      </Section>
 
-      {/* GIFTS — Lluvia de sobres */}
-      <Section>
-        <SectionTitle kicker="Mesa de regalos" title="Lluvia de sobres" />
-        <div className="max-w-xl mx-auto text-center">
-          <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
-               style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
-            <Gift className="h-7 w-7" />
+          <div className="mt-10 rounded-2xl p-6 bg-secondary/40 border border-primary/30 text-left max-w-2xl mx-auto">
+            <p className="text-xs uppercase tracking-[0.3em] text-primary mb-3">Recomendaciones</p>
+            <ul className="font-serif text-foreground/80 space-y-2 text-sm leading-relaxed">
+              <li>• Elige tonos suaves, empolvados o profundos de la paleta.</li>
+              <li>• <span className="text-primary font-semibold">Evitar colores neón o muy brillantes.</span></li>
+              <li>• Los estampados pequeños y los accesorios en tonos neutros son bienvenidos.</li>
+            </ul>
           </div>
-          <p className="font-serif text-lg italic text-foreground/80 leading-relaxed">
-            Tu compañía es nuestro mayor regalo. Si deseas obsequiarnos algo,
-            agradecemos tu detalle en una <span className="text-primary">lluvia de sobres</span> el día del evento.
-          </p>
-          <div className="divider mt-8 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
+
+          <div className="divider mt-10 max-w-[12rem] mx-auto"><Sparkles className="h-4 w-4" /></div>
         </div>
       </Section>
 
@@ -263,7 +284,7 @@ function Invitation() {
       <footer className="relative py-20 px-6 text-center overflow-hidden"
               style={{ background: "var(--gradient-romantic)" }}>
         <p className="font-serif uppercase tracking-[0.4em] text-xs text-muted-foreground">Con amor</p>
-        <h2 className="font-script text-6xl md:text-7xl text-gold-gradient mt-3">Stiven &amp; Gisell</h2>
+        <h2 className="font-script text-6xl md:text-7xl text-gold-gradient mt-3">Stiven &amp; Gisel</h2>
         <p className="mt-4 font-serif italic text-foreground/70">{WEDDING.dateLabel}</p>
       </footer>
     </div>
