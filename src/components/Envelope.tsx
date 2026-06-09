@@ -22,7 +22,7 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
         Tienes una invitación
       </p>
       <h1 className="font-script text-5xl md:text-6xl text-gold-gradient mb-12 animate-fade-up">
-        Stiven &amp; Gisell
+        Stiven &amp; Gisel
       </h1>
 
       <div className="envelope-stage" onClick={handleOpen} role="button" aria-label="Abrir invitación">
