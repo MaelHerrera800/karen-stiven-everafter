@@ -231,12 +231,11 @@ function Invitation() {
           <div className="mt-10">
             <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground mb-5">Paleta sugerida</p>
             <div className="grid grid-cols-4 sm:grid-cols-8 gap-3 max-w-2xl mx-auto">
-              {[
+            {[
                 { name: "Palo de Rosa", hex: "#C9A0A0" },
                 { name: "Rosa Viejo", hex: "#B07A7A" },
                 { name: "Malva", hex: "#9E7B9B" },
                 { name: "Vino Tinto", hex: "#6E1F2A" },
-                { name: "Azul Oscuro", hex: "#1F2A44" },
                 { name: "Verde Olivo", hex: "#6B7A3A" },
                 { name: "Gris Piedra", hex: "#7D7B76" },
                 { name: "Gris Topo", hex: "#8B7E6E" },
@@ -255,14 +254,14 @@ function Invitation() {
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellas</p>
               <h3 className="font-script text-3xl text-gold-gradient mt-2">Vestido largo</h3>
               <p className="font-serif text-foreground/75 mt-2">
-                Tonos de la paleta. Se reserva el color blanco exclusivamente para la novia.
+                Tonos de la paleta. Se reserva el color blanco exclusivamente para la novia. <span className="text-primary font-semibold">Evitar colores vibrantes o fuera de la paleta sugerida.</span>
               </p>
             </div>
             <div className="rounded-2xl p-6 bg-card border border-border" style={{ boxShadow: "var(--shadow-soft)" }}>
               <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Ellos</p>
               <h3 className="font-script text-3xl text-gold-gradient mt-2">Traje formal</h3>
               <p className="font-serif text-foreground/75 mt-2">
-                Traje completo con corbata en tonos de la paleta (azul oscuro, vino tinto, olivo o grises).
+                Traje completo con corbata en tonos de la paleta (vino tinto, olivo o grises). El azul oscuro está reservado exclusivamente para el esposo.
               </p>
             </div>
           </div>
@@ -271,7 +270,8 @@ function Invitation() {
             <p className="text-xs uppercase tracking-[0.3em] text-primary mb-3">Recomendaciones</p>
             <ul className="font-serif text-foreground/80 space-y-2 text-sm leading-relaxed">
               <li>• Elige tonos suaves, empolvados o profundos de la paleta.</li>
-              <li>• <span className="text-primary font-semibold">Evitar colores neón o muy brillantes.</span></li>
+              <li>• <span className="text-primary font-semibold">Evitar colores neón, vibrantes o muy brillantes.</span></li>
+              <li>• <span className="text-primary font-semibold">Respetar estrictamente la paleta de colores sugerida.</span></li>
               <li>• Los estampados pequeños y los accesorios en tonos neutros son bienvenidos.</li>
             </ul>
           </div>
