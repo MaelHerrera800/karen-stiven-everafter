@@ -120,7 +120,7 @@ function Invitation() {
       <Section>
         <SectionTitle kicker="Nuestra historia" title="Así nos enamoramos" />
         <div className="grid md:grid-cols-2 gap-10 items-center">
-          <img src={couple1} alt="Stiven y Gisell" width={1024} height={1280} loading="lazy"
+          <img src={couple1} alt="Stiven y Gisel" width={1024} height={1280} loading="lazy"
                className="rounded-2xl object-cover w-full h-[28rem] shadow-[var(--shadow-soft)]" />
           <div className="space-y-6 font-serif text-lg leading-relaxed text-foreground/80">
             <p className="font-script text-3xl text-gold-gradient leading-normal">
