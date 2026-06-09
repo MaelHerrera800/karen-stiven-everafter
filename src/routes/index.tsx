@@ -102,15 +102,19 @@ function Invitation() {
       {/* DATE & PLACE */}
       <Section className="bg-secondary/30">
         <SectionTitle kicker="Detalles del evento" title="Fecha y Lugar" />
+        <p className="text-center font-serif italic text-foreground/70 mb-8 max-w-xl mx-auto">
+          La ceremonia y la recepción se celebrarán en un mismo lugar: <span className="text-primary">Casa del Río</span>.
+        </p>
         <div className="grid md:grid-cols-2 gap-6">
           <DetailCard icon={<Calendar className="h-6 w-6" />} title="Ceremonia"
-                      heading={WEDDING.ceremony}
+                      heading="Casa del Río"
                       lines={[WEDDING.ceremonyAddress, `${WEDDING.dateLabel} · ${WEDDING.timeLabel}`]} />
           <DetailCard icon={<Sparkles className="h-6 w-6" />} title="Recepción"
-                      heading={WEDDING.reception}
-                      lines={[WEDDING.receptionAddress, "Cena, baile y celebración"]} />
+                      heading="Casa del Río"
+                      lines={["Mismo lugar de la ceremonia", "Cena, baile y celebración"]} />
         </div>
       </Section>
+
 
       {/* LOVE STORY */}
       <Section>
