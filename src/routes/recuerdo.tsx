@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { MapPin, Calendar, MessageCircle, Sparkles, Shirt, ChevronLeft, ChevronRight, X, Download, CalendarPlus } from "lucide-react";
+import { MapPin, Calendar, MessageCircle, Sparkles, Heart, ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Envelope } from "@/components/Envelope";
 import { Countdown } from "@/components/Countdown";
 import { MusicToggle } from "@/components/MusicToggle";
@@ -13,6 +13,7 @@ import p4 from "@/assets/photos/p4.jpg";
 import p5 from "@/assets/photos/p5.jpg";
 import p6 from "@/assets/photos/p6.jpg";
 import pLove from "@/assets/photos/p_love.jpg";
+
 const gallery = [p1, p2, p3, p4, p5, p6];
 
 const galleryLeft = [
@@ -27,19 +28,18 @@ const galleryRight = [
   { src: p6, aspect: "1/1" },
 ];
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/recuerdo")({
   head: () => ({
     meta: [
-      { title: "Stiven & Gisel · Nos Casamos" },
-      { name: "description", content: "Invitación digital a la boda de Stiven y Gisel. Acompáñanos a celebrar nuestro amor." },
+      { title: "Stiven & Gisel · Con Cariño Para Ti" },
+      { name: "description", content: "Aunque no puedas estar físicamente, apreciamos tu persona y tu amistad." },
       { property: "og:title", content: "Stiven & Gisel · Nos Casamos" },
-      { property: "og:description", content: "Una invitación elegante para celebrar nuestro amor." },
+      { property: "og:description", content: "Apreciamos tu persona y tu amistad." },
     ],
   }),
-  component: Index,
+  component: Recuerdo,
 });
 
-// Editable wedding details
 const WEDDING = {
   date: new Date("2026-08-22T15:00:00"),
   dateLabel: "Sábado 22 de Agosto, 2026",
@@ -49,8 +49,6 @@ const WEDDING = {
   reception: "Casa del Río",
   receptionAddress: "Santander de Quilichao, Cauca",
   mapsQuery: "Casa del Río, Santander de Quilichao, Cauca",
-  mapsShortUrl: "https://maps.app.goo.gl/sfDRXrtd2ybD2zbV8?g_st=ic",
-  whatsapp: "+573103709830",
 };
 
 function Section({ children, className = "", id }: { children: React.ReactNode; className?: string; id?: string }) {
@@ -73,45 +71,9 @@ function SectionTitle({ kicker, title }: { kicker?: string; title: string }) {
   );
 }
 
-function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: number | null; isAdmin: boolean }) {
+function RecuerdoInvitation() {
   useReveal();
   const [activePhoto, setActivePhoto] = useState<number | null>(null);
-
-  const rsvpText = invitado
-    ? `¡Hola! Confirmo la asistencia de ${invitado} (${pases || 1} personas) a la boda de Stiven & Gisel 💍`
-    : "¡Hola! Confirmo mi asistencia a la boda de Stiven & Gisel 💍";
-
-  const rsvpUrl = `https://wa.me/${WEDDING.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(rsvpText)}`;
-
-  const calendarTitle = encodeURIComponent("Recordatorio: ¡Boda de Stiven & Gisel! 💍");
-  const calendarDetails = encodeURIComponent("Faltan solo 5 días para la boda de Stiven y Gisel. Prepárate para acompañarlos en su gran día. Ubicación: Casa del Río, Santander de Quilichao, Cauca.");
-  const calendarLocation = encodeURIComponent("Casa del Río, Santander de Quilichao, Cauca");
-  const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${calendarTitle}&dates=20260817T150000/20260817T160000&details=${calendarDetails}&location=${calendarLocation}`;
-
-  const downloadIcs = () => {
-    const icsContent = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "BEGIN:VEVENT",
-      "URL:" + window.location.href,
-      "DTSTART:20260817T150000",
-      "DTEND:20260817T160000",
-      "SUMMARY:Recordatorio: ¡Boda de Stiven & Gisel! 💍",
-      "DESCRIPTION:Faltan solo 5 dias para la boda de Stiven y Gisel. Prepárate para acompañarlos en su gran dia. Lugar: Casa del Rio.",
-      "LOCATION:Casa del Rio\\, Santander de Quilichao\\, Cauca",
-      "END:VEVENT",
-      "END:VCALENDAR"
-    ].join("\r\n");
-
-    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "recordatorio_boda_stiven_y_gisel.ics");
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   return (
     <div className="relative animate-fade-in" style={{ background: "var(--cream)" }}>
@@ -176,47 +138,18 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
             </div>
           </div>
 
-          <div className="space-y-2 mb-8">
+          <div className="space-y-2 mb-4">
             <p className="font-serif uppercase tracking-widest text-[10px] text-muted-foreground">Ubicación</p>
             <h4 className="font-serif text-xl font-semibold text-foreground">{WEDDING.ceremony}</h4>
             <p className="font-serif text-foreground/75">{WEDDING.ceremonyAddress}</p>
           </div>
-
-          {/* CALENDAR REMINDER BUTTONS */}
-          <div className="bg-secondary/20 rounded-xl p-6 border border-primary/10">
-            <p className="font-serif text-sm text-foreground/80 mb-4 flex items-center justify-center gap-1.5">
-              <CalendarPlus className="h-4 w-4 text-primary" />
-              ¿Quieres que te lo recordemos? Añade un recordatorio a tu calendario 5 días antes de la boda.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a 
-                href={googleCalendarUrl} 
-                target="_blank" 
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-primary/30 hover:border-primary bg-card text-xs font-serif uppercase tracking-wider transition-all hover:scale-[1.02]"
-              >
-                Google Calendar
-              </a>
-              <button 
-                onClick={downloadIcs}
-                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-primary/30 hover:border-primary bg-card text-xs font-serif uppercase tracking-wider transition-all hover:scale-[1.02] cursor-pointer"
-              >
-                <Download className="h-3.5 w-3.5" /> Descargar .ics
-              </button>
-            </div>
-            <p className="text-[10px] font-serif text-muted-foreground mt-3">
-              * Recordatorio programado para el lunes 17 de agosto de 2026.
-            </p>
-          </div>
         </div>
       </Section>
-
 
       {/* LOVE STORY */}
       <Section>
         <SectionTitle kicker="Nuestra historia" title="Así nos enamoramos" />
         <div className="max-w-3xl mx-auto">
-
           {/* FOTO PRINCIPAL */}
           <div className="relative mb-12 flex justify-center">
             <div
@@ -236,7 +169,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
                 className="w-full object-cover"
                 style={{ aspectRatio: "3/4", display: "block" }}
               />
-              {/* overlay degradado inferior */}
               <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/30 to-transparent rounded-b-2xl z-10" />
               <p className="absolute bottom-5 inset-x-0 text-center font-script text-2xl text-white/90 z-20 drop-shadow-md">
                 Stiven &amp; Gisel
@@ -311,174 +243,24 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
         </div>
       </Section>
 
-      {/* RSVP */}
-      <Section>
-        <SectionTitle kicker="Confirma tu asistencia" title="Te esperamos" />
-        <div className="text-center max-w-2xl mx-auto">
-          {invitado && (
-            <div className="mb-8 p-5 rounded-2xl bg-secondary/20 border border-primary/20 inline-block font-serif text-lg shadow-[var(--shadow-soft)]">
-              Especialmente para: <span className="text-primary font-semibold">{invitado}</span>
-              {pases !== null && (
-                <span> · Pases reservados: <span className="text-primary font-semibold">{pases}</span></span>
-              )}
-            </div>
-          )}
-          
-          <p className="font-serif text-lg text-foreground/80 mb-8">
-            Apreciamos tu presencia. Por favor confirma tu asistencia antes del
-            <span className="text-primary font-semibold"> 1 de Agosto</span>.
-          </p>
-
-          <div className="grid sm:grid-cols-3 gap-4 mt-10 mb-10 text-left">
-            <div className="rounded-2xl p-5 bg-card border border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">Obligatorio</p>
-              <h4 className="font-script text-2xl text-gold-gradient mt-2">Confirmación</h4>
-              <p className="font-serif text-sm text-foreground/75 mt-2">
-                Es <span className="text-primary font-semibold">estrictamente obligatorio</span> confirmar tu asistencia antes de la fecha límite para garantizar tu lugar.
-              </p>
-            </div>
-            <div className="rounded-2xl p-5 bg-card border border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">Cupos limitados</p>
-              <h4 className="font-script text-2xl text-gold-gradient mt-2">Pase personal</h4>
-              <p className="font-serif text-sm text-foreground/75 mt-2">
-                {pases !== null ? (
-                  <>Hemos reservado <span className="text-primary font-semibold">{pases} pases</span> en tu honor. Agradecemos respetar este número de cupos asignados.</>
-                ) : (
-                  <>Te pedimos respetar el número de invitados asignados en tu pase. No se permitirán acompañantes adicionales no registrados.</>
-                )}
-              </p>
-            </div>
-            <div className="rounded-2xl p-5 bg-card border border-primary/30" style={{ boxShadow: "var(--shadow-soft)" }}>
-              <p className="text-xs uppercase tracking-[0.3em] text-primary">Control de acceso</p>
-              <h4 className="font-script text-2xl text-gold-gradient mt-2">Invitación digital</h4>
-              <p className="font-serif text-sm text-foreground/75 mt-2">
-                Deberás presentar tu invitación digital o código de acceso en la entrada del evento de manera obligatoria.
-              </p>
-            </div>
-          </div>
-
-          <a href={rsvpUrl} target="_blank" rel="noreferrer"
-             className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-primary-foreground font-serif uppercase tracking-[0.2em] text-sm transition-transform hover:scale-105"
-             style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
-            <MessageCircle className="h-5 w-5" /> Confirmar por WhatsApp
-          </a>
-        </div>
-      </Section>
-
-
-      {/* MAP */}
+      {/* MENSAJE ESPECIAL (Reemplaza RSVP) */}
       <Section className="bg-secondary/30">
-        <SectionTitle kicker="Cómo llegar" title="Ubicación" />
-        <div className="rounded-2xl overflow-hidden shadow-[var(--shadow-soft)] border border-border">
-          <iframe
-            title="Mapa de la ubicación"
-            src={`https://www.google.com/maps?q=${encodeURIComponent(WEDDING.mapsQuery)}&output=embed`}
-            className="w-full h-80 md:h-96"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
-        <div className="mt-6 text-center">
-          <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(WEDDING.mapsQuery)}`}
-             target="_blank" rel="noreferrer"
-             className="inline-flex items-center gap-2 text-primary font-serif underline-offset-4 hover:underline">
-            <MapPin className="h-4 w-4" /> Abrir en Google Maps
-          </a>
-        </div>
-      </Section>
-
-      {/* DRESS CODE */}
-      <Section>
-        <SectionTitle kicker="Código de vestimenta" title="Dress Code" />
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
-               style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
-            <Shirt className="h-7 w-7" />
-          </div>
-          <p className="font-serif text-lg italic text-foreground/80 leading-relaxed mb-10">
-            Agradecemos respetar el código de vestimenta y la paleta de colores obligatoria de nuestra celebración.
-          </p>
-
-          <div className="grid sm:grid-cols-2 gap-6 text-left">
-            {/* Ellas Card */}
-            <div className="rounded-2xl p-6 bg-card border border-border shadow-[var(--shadow-soft)] flex flex-col justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">Ellas</p>
-                <h3 className="font-script text-3xl text-gold-gradient mt-2">Vestido largo</h3>
-                <p className="font-serif text-foreground/75 mt-3 text-sm leading-relaxed">
-                  Es totalmente obligatorio respetar la paleta de colores escogida para nuestra boda. Las mujeres deben vestir en tonos de **palo de rosa, rosa viejo, malva, vino tinto o azul oscuro**. Está estrictamente prohibido el uso de negro o blanco, así como cualquier color extremadamente brillante o peinados ostentosos. Nuestro dress code es elegante, sencillo, minimalista y formal.
-                </p>
-              </div>
-              
-              <div className="mt-8 border-t border-border/40 pt-4">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3 text-center">Paleta obligatoria (Ellas)</p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {[
-                    { name: "Palo de Rosa", hex: "#C9A0A0" },
-                    { name: "Rosa Viejo", hex: "#B07A7A" },
-                    { name: "Malva", hex: "#9E7B9B" },
-                    { name: "Vino Tinto", hex: "#6E1F2A" },
-                    { name: "Azul Oscuro", hex: "#1D2D44" },
-                  ].map((c) => (
-                    <div key={c.name} className="flex flex-col items-center gap-1 w-14">
-                      <div className="h-9 w-9 rounded-full border border-border shadow-sm"
-                           style={{ background: c.hex }} aria-label={c.name} />
-                      <span className="font-serif text-[9px] text-foreground/60 text-center leading-none mt-1">{c.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Ellos Card */}
-            <div className="rounded-2xl p-6 bg-card border border-border shadow-[var(--shadow-soft)] flex flex-col justify-between">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-primary font-semibold">Ellos</p>
-                <h3 className="font-script text-3xl text-gold-gradient mt-2">Traje formal</h3>
-                <p className="font-serif text-foreground/75 mt-3 text-sm leading-relaxed">
-                  Es obligatorio ir vestido formalmente, ceñido a la paleta de colores indicada: **verde olivo, azul oscuro, gris piedra, gris topo y negro**. Está estrictamente prohibido vestir de color azul petróleo o azul acero claro.
-                </p>
-              </div>
-
-              <div className="mt-8 border-t border-border/40 pt-4">
-                <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-3 text-center">Paleta obligatoria (Ellos)</p>
-                <div className="flex flex-wrap gap-2 justify-center">
-                  {[
-                    { name: "Verde Olivo", hex: "#6B7A3A" },
-                    { name: "Azul Oscuro", hex: "#1D2D44" },
-                    { name: "Gris Piedra", hex: "#7D7B76" },
-                    { name: "Gris Topo", hex: "#8B7E6E" },
-                    { name: "Negro", hex: "#1A1A1A" },
-                  ].map((c) => (
-                    <div key={c.name} className="flex flex-col items-center gap-1 w-14">
-                      <div className="h-9 w-9 rounded-full border border-border shadow-sm"
-                           style={{ background: c.hex }} aria-label={c.name} />
-                      <span className="font-serif text-[9px] text-foreground/60 text-center leading-none mt-1">{c.name}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* GIFT SECTION / LLUVIA DE SOBRES */}
-      <Section className="bg-secondary/30" id="lluvia-de-sobres">
-        <SectionTitle kicker="Regalos" title="Lluvia de Sobres" />
+        <SectionTitle kicker="Con especial cariño" title="Un mensaje para ti" />
         <div className="max-w-2xl mx-auto rounded-2xl p-8 md:p-10 bg-card border border-primary/30 text-center relative overflow-hidden"
              style={{ boxShadow: "var(--shadow-soft)" }}>
           <div className="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
           
           <div className="mx-auto h-16 w-16 rounded-full flex items-center justify-center text-primary-foreground mb-6"
                style={{ background: "var(--gradient-gold)", boxShadow: "var(--shadow-gold)" }}>
-            <Sparkles className="h-7 w-7" />
+            <Heart className="h-7 w-7 fill-current" />
           </div>
 
-          <div className="max-w-md mx-auto">
-            <h4 className="font-serif font-bold uppercase tracking-wider text-xs text-primary/80 mb-3">— El día del evento —</h4>
-            <p className="font-serif text-base text-foreground/75 leading-relaxed">
-              Dispondremos de un cofre especial en la recepción para que puedas depositar tu sobre con tu obsequio y felicitaciones.
+          <div className="max-w-xl mx-auto">
+            <p className="font-serif text-lg italic text-foreground/80 leading-relaxed mb-6">
+              "Aunque no estés para compartir este momento junto a nosotros, apreciamos tu persona y tu amistad."
+            </p>
+            <p className="font-serif text-sm text-foreground/75 leading-relaxed">
+              Tu presencia y cariño en nuestras vidas han sido invaluables. Aunque la distancia física nos impida celebrar juntos este gran día, tu afecto nos acompaña en este nuevo camino que comenzamos. ¡Gracias por ser parte de nuestra historia!
             </p>
           </div>
         </div>
@@ -486,9 +268,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
 
       {/* GUESTBOOK */}
       <Guestbook />
-
-      {/* ADMIN PANEL */}
-      {isAdmin && <AdminPanel />}
 
       {/* FOOTER */}
       <footer className="relative py-20 px-6 text-center overflow-hidden"
@@ -501,7 +280,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
       {/* LIGHTBOX OVERLAY */}
       {activePhoto !== null && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md transition-all duration-300 animate-fade-in">
-          {/* Close button */}
           <button 
             onClick={() => setActivePhoto(null)}
             className="absolute top-6 right-6 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-all cursor-pointer z-50"
@@ -509,7 +287,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
             <X className="h-6 w-6" />
           </button>
 
-          {/* Previous button */}
           <button 
             onClick={() => setActivePhoto((prev) => (prev !== null ? (prev - 1 + gallery.length) % gallery.length : null))}
             className="absolute left-6 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all cursor-pointer z-50"
@@ -517,7 +294,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
             <ChevronLeft className="h-6 w-6" />
           </button>
 
-          {/* Photo container */}
           <div className="max-w-[90vw] max-h-[85vh] flex flex-col items-center justify-center">
             <img 
               src={gallery[activePhoto]} 
@@ -529,7 +305,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
             </p>
           </div>
 
-          {/* Next button */}
           <button 
             onClick={() => setActivePhoto((prev) => (prev !== null ? (prev + 1) % gallery.length : null))}
             className="absolute right-6 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all cursor-pointer z-50"
@@ -542,23 +317,6 @@ function Invitation({ invitado, pases, isAdmin }: { invitado: string; pases: num
   );
 }
 
-function DetailCard({ icon, title, heading, lines }: {
-  icon: React.ReactNode; title: string; heading: string; lines: string[];
-}) {
-  return (
-    <div className="rounded-2xl p-8 bg-card border border-border text-center"
-         style={{ boxShadow: "var(--shadow-soft)" }}>
-      <div className="mx-auto h-14 w-14 rounded-full flex items-center justify-center text-primary-foreground mb-4"
-           style={{ background: "var(--gradient-gold)" }}>{icon}</div>
-      <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">{title}</p>
-      <h3 className="font-script text-4xl text-gold-gradient mt-2">{heading}</h3>
-      {lines.map((l, i) => (
-        <p key={i} className="font-serif text-foreground/75 mt-1">{l}</p>
-      ))}
-    </div>
-  );
-}
-
 interface GuestMessage {
   id: string;
   name: string;
@@ -567,95 +325,6 @@ interface GuestMessage {
 }
 
 const DEFAULT_MESSAGES: GuestMessage[] = [];
-
-const GUEST_LIST = [
-  { name: "Familia Ortiz Alomia", pases: 3 },
-  { name: "Familia Golú Vera", pases: 3 },
-  { name: "Familia Golú Zambrano", pases: 3 },
-  { name: "Familia Golú Izquierdo", pases: 2 },
-  { name: "Familia Campo Meneses", pases: 3 },
-  { name: "Familia Golú López", pases: 3 },
-  { name: "María y Lindelia", pases: 2 },
-  { name: "Beatriz Caicedo", pases: 1 },
-  { name: "Familia Golú Castillo", pases: 2 },
-  { name: "Nayda Sierra", pases: 1 },
-  { name: "Miguel", pases: 1 },
-  { name: "Jenifer Vera", pases: 2 },
-  { name: "Familia Villaquirán Lasso", pases: 2 },
-  { name: "Familia Díaz Sánchez", pases: 2 },
-  { name: "Karol Quintero", pases: 1 },
-  { name: "Familia Palacios Salazar", pases: 2 },
-  { name: "Familia Camacho Rodas", pases: 2 },
-  { name: "Rosa Alomia", pases: 1 },
-  { name: "Marina Alomia", pases: 1 },
-  { name: "Familia Ordoñez Garcia", pases: 2 },
-  { name: "Familia Sánchez Ocampo", pases: 2 },
-  { name: "Familia Ocampo Mariaca", pases: 2 },
-  { name: "Sirley Ospina", pases: 1 },
-  { name: "Julieth Arbelaez", pases: 1 },
-  { name: "Yari Barrios", pases: 1 },
-  { name: "Darwin Barrios", pases: 1 },
-  { name: "Jhon Lara", pases: 1 },
-  { name: "Familia Barrios Vallecilla", pases: 2 },
-  { name: "Modesta Cabrera", pases: 1 },
-  { name: "Juan David Ospina", pases: 1 },
-  { name: "María Paula Girón", pases: 1 },
-  { name: "Brayan Tolosa", pases: 1 },
-  { name: "Inelia Medina", pases: 1 },
-  { name: "Familia Ordoñez Gil", pases: 2 },
-  { name: "Gertrudis Mantilla", pases: 1 },
-  { name: "Fotógrafo", pases: 1 },
-  { name: "Familia Alomia Campo", pases: 2 },
-];
-
-function AdminPanel() {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-
-  const getLink = (name: string, pases: number) => {
-    if (typeof window === "undefined") return "";
-    const baseUrl = window.location.origin + window.location.pathname;
-    return `${baseUrl}?invitado=${encodeURIComponent(name)}&pases=${pases}`;
-  };
-
-  const copyToClipboard = (name: string, pases: number, index: number) => {
-    const link = getLink(name, pases);
-    navigator.clipboard.writeText(link);
-    setCopiedIndex(index);
-    setTimeout(() => setCopiedIndex(null), 2000);
-  };
-
-  return (
-    <Section className="bg-muted py-10 border-t border-border" id="admin-panel">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex items-center gap-2 mb-6">
-          <Sparkles className="h-5 w-5 text-primary" />
-          <h2 className="font-serif text-2xl font-semibold">Generador de Enlaces de Invitados (Admin)</h2>
-        </div>
-        <p className="font-serif text-sm text-foreground/75 mb-6">
-          Haz clic en <strong>Copiar Enlace</strong> en cualquiera de los invitados para obtener el link personalizado que les enviarás por WhatsApp.
-        </p>
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {GUEST_LIST.map((guest, idx) => {
-            return (
-              <div key={idx} className="p-4 rounded-xl bg-card border border-border flex flex-col justify-between gap-3 shadow-sm">
-                <div>
-                  <h4 className="font-serif font-bold text-sm text-foreground">{guest.name}</h4>
-                  <p className="font-serif text-xs text-muted-foreground">{guest.pases} pase(s)</p>
-                </div>
-                <button
-                  onClick={() => copyToClipboard(guest.name, guest.pases, idx)}
-                  className="w-full text-center py-2 px-3 rounded-lg border border-primary/20 hover:bg-primary/5 text-xs font-serif uppercase tracking-wider transition-all cursor-pointer"
-                >
-                  {copiedIndex === idx ? "¡Copiado!" : "Copiar Enlace"}
-                </button>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </Section>
-  );
-}
 
 function Guestbook() {
   const [messages, setMessages] = useState<GuestMessage[]>(DEFAULT_MESSAGES);
@@ -703,7 +372,6 @@ function Guestbook() {
     <Section id="libro-de-visitas" className="bg-secondary/10">
       <SectionTitle kicker="Libro de visitas" title="Deja tus buenos deseos" />
       <div className="grid md:grid-cols-5 gap-8 items-start">
-        {/* FORM */}
         <div className="md:col-span-2 rounded-2xl p-6 bg-card border border-primary/20 shadow-[var(--shadow-soft)]">
           <h3 className="font-serif text-xl font-semibold mb-4 text-foreground/90">Escribe tu mensaje</h3>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -746,7 +414,6 @@ function Guestbook() {
           </form>
         </div>
 
-        {/* MESSAGES LIST */}
         <div className="md:col-span-3 space-y-4 max-h-[480px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-primary/25 scrollbar-track-transparent">
           {messages.length === 0 ? (
             <div className="text-center py-12 text-muted-foreground font-serif italic">
@@ -775,28 +442,8 @@ function Guestbook() {
   );
 }
 
-function Index() {
+function Recuerdo() {
   const [opened, setOpened] = useState(false);
-  const [invitado, setInvitado] = useState("");
-  const [pases, setPases] = useState<number | null>(null);
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const params = new URLSearchParams(window.location.search);
-      const nameParam = params.get("invitado");
-      const pasesParam = params.get("pases");
-      const adminParam = params.get("admin");
-      if (nameParam) setInvitado(nameParam);
-      if (pasesParam) {
-        const num = parseInt(pasesParam, 10);
-        if (!isNaN(num)) setPases(num);
-      }
-      if (adminParam === "true") {
-        setIsAdmin(true);
-      }
-    }
-  }, []);
 
   // load fonts
   useEffect(() => {
@@ -807,6 +454,6 @@ function Index() {
     return () => { document.head.removeChild(link); };
   }, []);
 
-  if (!opened) return <Envelope onOpen={() => setOpened(true)} invitado={invitado} />;
-  return <Invitation invitado={invitado} pases={pases} isAdmin={isAdmin} />;
+  if (!opened) return <Envelope onOpen={() => setOpened(true)} />;
+  return <RecuerdoInvitation />;
 }

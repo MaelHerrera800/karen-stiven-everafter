@@ -72,7 +72,7 @@
   --gold-soft: oklch(0.80 0.05 120);
   --blush: oklch(0.93 0.02 115);
   --rose: oklch(0.70 0.05 125);
-  --cream: oklch(0.97 0.01 100);
+  --cream: oklch(0.94 0.018 90);
 
   /* Gradients & shadows */
   --gradient-romantic: linear-gradient(135deg, oklch(0.98 0.008 100) 0%, oklch(0.94 0.02 120) 60%, oklch(0.86 0.05 125) 100%);
@@ -91,7 +91,7 @@
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--background);
+    background: var(--cream);
     color: var(--foreground);
     font-family: var(--font-serif);
     font-feature-settings: "liga", "kern";
@@ -258,3 +258,33 @@
   content: ""; height: 1px; flex: 1; max-width: 96px;
   background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary) 45%, transparent), transparent);
 }
+
+/* ===== Flower Rain (Petals) ===== */
+.petals {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 40; /* sit behind lightbox overlays but above content */
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  display: block;
+  width: 14px;
+  height: 18px;
+  background: radial-gradient(
+    circle at 35% 35%,
+    oklch(0.72 0.06 125),
+    oklch(0.48 0.07 125)
+  );
+  border-radius: 50% 10% 50% 50%;
+  opacity: 0;
+  animation-name: petal-fall;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+

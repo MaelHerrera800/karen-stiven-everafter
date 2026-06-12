@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function Envelope({ onOpen }: { onOpen: () => void }) {
+export function Envelope({ onOpen, invitado }: { onOpen: () => void; invitado?: string }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -29,10 +29,17 @@ export function Envelope({ onOpen }: { onOpen: () => void }) {
         <div className={`envelope ${open ? "is-open" : ""}`}>
           <div className="env-body" />
           <div className="env-letter">
-            <p className="font-serif uppercase tracking-[0.35em] text-xs text-muted-foreground">Nuestra boda</p>
-            <p className="font-script text-3xl text-gold-gradient mt-2">S &amp; G</p>
-            <div className="divider w-32 my-2"><span>✦</span></div>
-            <p className="font-serif text-sm text-foreground/70 italic">Te invitamos a celebrar nuestro amor</p>
+            <p className="font-serif uppercase tracking-[0.35em] text-[10px] text-muted-foreground">Nuestra boda</p>
+            <p className="font-script text-2xl text-gold-gradient mt-1">S &amp; G</p>
+            <div className="divider w-24 my-1.5"><span>✦</span></div>
+            {invitado ? (
+              <div className="text-center px-2">
+                <p className="font-serif text-[9px] tracking-widest text-muted-foreground uppercase">Familia Invitada</p>
+                <p className="font-script text-xl text-primary mt-0.5 leading-tight">{invitado}</p>
+              </div>
+            ) : (
+              <p className="font-serif text-xs text-foreground/70 italic">Te invitamos a celebrar nuestro amor</p>
+            )}
           </div>
           <div className="env-flap" />
           <div className="env-seal">S&amp;G</div>
