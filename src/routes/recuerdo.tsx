@@ -444,6 +444,15 @@ function Guestbook() {
 
 function Recuerdo() {
   const [opened, setOpened] = useState(false);
+  const [invitado, setInvitado] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const nameParam = params.get("invitado");
+      if (nameParam) setInvitado(nameParam);
+    }
+  }, []);
 
   // load fonts
   useEffect(() => {
@@ -454,6 +463,6 @@ function Recuerdo() {
     return () => { document.head.removeChild(link); };
   }, []);
 
-  if (!opened) return <Envelope onOpen={() => setOpened(true)} />;
+  if (!opened) return <Envelope onOpen={() => setOpened(true)} invitado={invitado} />;
   return <RecuerdoInvitation />;
 }

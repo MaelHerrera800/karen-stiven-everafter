@@ -617,18 +617,21 @@ const GUEST_LIST = [
 ];
 
 function AdminPanel() {
-  const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [copiedIndex, setCopiedIndex] = useState<string | null>(null);
 
-  const getLink = (name: string, pases: number) => {
+  const getLink = (name: string, pases: number, type: "asistencia" | "recuerdo") => {
     if (typeof window === "undefined") return "";
-    const baseUrl = window.location.origin + window.location.pathname;
-    return `${baseUrl}?invitado=${encodeURIComponent(name)}&pases=${pases}`;
+    const origin = window.location.origin;
+    if (type === "recuerdo") {
+      return `${origin}/recuerdo?invitado=${encodeURIComponent(name)}`;
+    }
+    return `${origin}/?invitado=${encodeURIComponent(name)}&pases=${pases}`;
   };
 
-  const copyToClipboard = (name: string, pases: number, index: number) => {
-    const link = getLink(name, pases);
+  const copyToClipboard = (name: string, pases: number, index: number, type: "asistencia" | "recuerdo") => {
+    const link = getLink(name, pases, type);
     navigator.clipboard.writeText(link);
-    setCopiedIndex(index);
+    setCopiedIndex(`${type}-${index}`);
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
@@ -640,7 +643,7 @@ function AdminPanel() {
           <h2 className="font-serif text-2xl font-semibold">Generador de Enlaces de Invitados (Admin)</h2>
         </div>
         <p className="font-serif text-sm text-foreground/75 mb-6">
-          Haz clic en <strong>Copiar Enlace</strong> en cualquiera de los invitados para obtener el link personalizado que les enviarás por WhatsApp.
+          Haz clic en cualquiera de los botones para copiar el enlace correspondiente al portapapeles.
         </p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
           {GUEST_LIST.map((guest, idx) => {
@@ -650,12 +653,20 @@ function AdminPanel() {
                   <h4 className="font-serif font-bold text-sm text-foreground">{guest.name}</h4>
                   <p className="font-serif text-xs text-muted-foreground">{guest.pases} pase(s)</p>
                 </div>
-                <button
-                  onClick={() => copyToClipboard(guest.name, guest.pases, idx)}
-                  className="w-full text-center py-2 px-3 rounded-lg border border-primary/20 hover:bg-primary/5 text-xs font-serif uppercase tracking-wider transition-all cursor-pointer"
-                >
-                  {copiedIndex === idx ? "¡Copiado!" : "Copiar Enlace"}
-                </button>
+                <div className="flex flex-col gap-2">
+                  <button
+                    onClick={() => copyToClipboard(guest.name, guest.pases, idx, "asistencia")}
+                    className="w-full text-center py-2 px-3 rounded-lg border border-primary/20 hover:bg-primary/5 text-xs font-serif uppercase tracking-wider transition-all cursor-pointer"
+                  >
+                    {copiedIndex === `asistencia-${idx}` ? "¡Copiado!" : "Enlace Asistencia"}
+                  </button>
+                  <button
+                    onClick={() => copyToClipboard(guest.name, guest.pases, idx, "recuerdo")}
+                    className="w-full text-center py-2 px-3 rounded-lg border border-primary/20 hover:bg-primary/5 text-xs font-serif uppercase tracking-wider transition-all cursor-pointer"
+                  >
+                    {copiedIndex === `recuerdo-${idx}` ? "¡Copiado!" : "Enlace Recuerdo"}
+                  </button>
+                </div>
               </div>
             );
           })}
