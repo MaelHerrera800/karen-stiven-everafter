@@ -587,7 +587,7 @@ const GUEST_LIST = [
   { name: "Familia Palacios Salazar", pases: 2 },
   { name: "Familia Camacho Rodas", pases: 2 },
   { name: "Rosa Alomia", pases: 1 },
-  { name: "Marina Alomia", pases: 1 },
+  { name: "Familia Alomia Córdoba", pases: 4 },
   { name: "Familia Ordoñez Garcia", pases: 2 },
   { name: "Familia Sánchez Ocampo", pases: 2 },
   { name: "Familia Ocampo Mariaca", pases: 2 },
@@ -606,6 +606,14 @@ const GUEST_LIST = [
   { name: "Gertrudis Mantilla", pases: 1 },
   { name: "Fotógrafo", pases: 1 },
   { name: "Familia Alomia Campo", pases: 2 },
+  { name: "Familia Chocó", pases: 2 },
+  { name: "Familia García Lasso", pases: 2 },
+  { name: "Andy Cuéllar", pases: 1 },
+  { name: "Familia Lizcano Mélendez", pases: 2 },
+  { name: "Familia Escobar Chocó", pases: 2 },
+  { name: "Esteban Anacona", pases: 1 },
+  { name: "Rudy Diaz", pases: 1 },
+  { name: "Esteban Anacona 2", pases: 1 },
 ];
 
 function AdminPanel() {
